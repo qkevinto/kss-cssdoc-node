@@ -1,59 +1,81 @@
-// Heading 1.A
-//
-// No markup.
-//
-// Style guide: 1.A
+/**
+ * Heading 1.A
+ *
+ * @description No markup.
+ *
+ * @styleguide 1.A
+ */
 
-// Heading 1.B
-//
-// Markup: <span>inline</span>
-//
-// Style guide: 1.B
+/**
+ * Heading 1.B
+ *
+ * @markup <span>inline</span>
+ *
+ * @styleguide 1.B
+ */
 
-// Heading 1.C
-//
-// Markup: 1c.hbs
-//
-// .modifier-1 - Modifier #1
-// :hover - Modifier Hover
-//
-// Style guide: 1.C
+/**
+ * Heading 1.C
+ *
+ * @markup 1c.hbs
+ *
+ * @modifier .modifier-1 - Modifier #1
+ * @modifier :hover - Modifier Hover
+ *
+ * @styleguide 1.C
+ */
 
-// Heading 1.D
-//
-// Markup: missing-file.hbs
-//
-// Style guide: 1.D
+/**
+ * Heading 1.D
+ *
+ * @markup missing-file.hbs
+ *
+ * @styleguide 1.D
+ */
 
-// Heading 1.E
-//
-// Markup: <div class="{{modifier_class}}"></div>
-//
-// .modifier-1 - Modifier #1
-// :hover - Modifier Hover
-//
-// Style guide: 1.E
+/**
+ * Heading 1.E
+ *
+ * @markup <div class="{{modifier_class}}"></div>
+ *
+ * @modifier .modifier-1 - Modifier #1
+ * @modifier :hover - Modifier Hover
+ *
+ * @styleguide 1.E
+ */
 
-// Heading 1.E.A
-//
-// Style guide: 1.E.A
+/**
+ * Heading 1.E.A
+ *
+ * @styleguide 1.E.A
+ */
 
-// Heading 2.A
-//
-// Style guide: 2.A
+/**
+ * Heading 2.A
+ *
+ * @styleguide 2.A
+ */
 
-// Heading 2.B
-//
-// Style guide: 2.B
+/**
+ * Heading 2.B
+ *
+ * @styleguide 2.B
+ */
 
-// Heading 2.C
-//
-// Style guide: 2.C
+/**
+ * Heading 2.C
+ *
+ * @styleguide 2.C
+ */
 
-// Heading 2.D
-//
-// Style guide: 2.D
+/**
+ * Heading 2.D
+ *
+ * @styleguide 2.D
+ */
 
-// Heading 2.E
-//
-// Style guide: 2.E
+/**
+ * Heading 2.E
+ *
+ * @styleguide 2.E
+ */

@@ -9,8 +9,8 @@ describe('kss.parse()', function() {
     this.files = [
       {path: '/tmp/example1', contents: 'file contents'},
       {path: '/tmp/example2', contents: 'file contents'},
-      {path: '/tmp/example3', contents: '// Style guide: all-by-itself'},
-      {path: '/tmp/example4', contents: '// Invalid weight\n//\n// Weight: invalid\n//\n// Style guide: invalid-weight'}
+      {path: '/tmp/example3', contents: '/**\n * @styleguide all-by-itself\n */'},
+      {path: '/tmp/example4', contents: '/**\n * Invalid weight\n/ *\n * @weight: invalid\n *\n * @styleguide invalid-weight\n */'}
     ];
     done();
   });
@@ -29,7 +29,7 @@ describe('kss.parse()', function() {
     });
 
     it('should function when given an array of strings', function(done) {
-      let styleGuide = kss.parse(['file contents', 'file contents', '// Strings\n//\n// Style guide: strings'], {});
+      let styleGuide = kss.parse(['file contents', 'file contents', '/**\n * Strings\n *\n * @styleguide strings\n */'], {});
       expect(styleGuide.data).to.not.have.property('files');
       done();
     });
@@ -42,31 +42,6 @@ describe('kss.parse()', function() {
       });
     });
 
-    it('should parse /* */ CSS comments', function(done) {
-      expect(this.styleGuide.sections('comment.multi-line').header()).to.equal('Comment syntax: multi-line');
-      done();
-    });
-
-    it('should parse // CSS Preprocessor comments', function(done) {
-      expect(this.styleGuide.sections('comment.inline').header()).to.equal('Comment syntax: inline');
-      done();
-    });
-
-    it('should parse indented /* */ CSS comments', function(done) {
-      expect(this.styleGuide.sections('comment.multi-line.indented').header()).to.equal('Comment syntax: multi-line, indented');
-      done();
-    });
-
-    it('should parse /* */ CSS comments with extra blank lines', function(done) {
-      expect(this.styleGuide.sections('comment.multi-line.extra-newlines').header()).to.equal('Comment syntax: multi-line, extra empty lines');
-      done();
-    });
-
-    it('should parse indented /* */ CSS comments with extra blank lines', function(done) {
-      expect(this.styleGuide.sections('comment.multi-line.indented-extra-newlines').header()).to.equal('Comment syntax: multi-line, indented, extra empty lines');
-      done();
-    });
-
     it('should not parse a /* inside a CSS string', function(done) {
       expect(this.styleGuide.sections('comment.multi-line.false-positive.test-1').header()).to.equal('False-positive of multi-line comment block #1');
       done();
@@ -74,16 +49,6 @@ describe('kss.parse()', function() {
 
     it('should not parse a single line /* */ CSS comment', function(done) {
       expect(this.styleGuide.sections('comment.multi-line.false-positive.test-2').header()).to.equal('False-positive of multi-line comment block #2');
-      done();
-    });
-
-    it('should parse a //-style block directly before a /**/-style block', function(done) {
-      expect(this.styleGuide.sections('comment.inline.no-bottom-space').header()).to.equal('Comment syntax: inline, directly before multi-line');
-      done();
-    });
-
-    it('should parse a /**/-style block directly after a //-style block', function(done) {
-      expect(this.styleGuide.sections('comment.multi-line.no-top-space').header()).to.equal('Comment syntax: multi-line, directly after inline');
       done();
     });
 
@@ -285,27 +250,23 @@ describe('kss.parse()', function() {
           });
         });
 
-        it('should find in header', function(done) {
-          expect(this.styleGuide.sections('deprecated.in-header').deprecated()).to.be.true;
-          expect(this.styleGuide.sections('experimental.in-header').experimental()).to.be.true;
+        it('should find deprected', function(done) {
+          expect(this.styleGuide.sections('deprecated.is-deprecated').deprecated()).to.be.true;
           done();
         });
 
-        it('should find in description', function(done) {
-          expect(this.styleGuide.sections('deprecated.in-paragraph').deprecated()).to.be.true;
-          expect(this.styleGuide.sections('experimental.in-paragraph').experimental()).to.be.true;
+        it('should find experimental', function(done) {
+          expect(this.styleGuide.sections('experimental.is-experimental').experimental()).to.be.true;
           done();
         });
 
-        it('should not find in modifiers', function(done) {
-          expect(this.styleGuide.sections('deprecated.in-modifier').deprecated()).to.be.false;
-          expect(this.styleGuide.sections('experimental.in-modifier').experimental()).to.be.false;
+        it('should find not deprected', function(done) {
+          expect(this.styleGuide.sections('deprecated.is-not-deprecated').deprecated()).to.be.false;
           done();
         });
 
-        it('should not find when not at the beginning of a line', function(done) {
-          expect(this.styleGuide.sections('deprecated.not-at-beginning').deprecated()).to.be.false;
-          expect(this.styleGuide.sections('experimental.not-at-beginning').experimental()).to.be.false;
+        it('should find not experimental', function(done) {
+          expect(this.styleGuide.sections('experimental.is-not-experimental').experimental()).to.be.false;
           done();
         });
       });
@@ -334,7 +295,7 @@ describe('kss.parse()', function() {
         return helperUtils.traverseFixtures({
           mask: 'options-custom.less',
           markdown: false,
-          custom: ['custom', 'custom multi-word property', 'custom2']
+          custom: ['custom', 'custom-multi-word-property', 'custom2']
         }).then(styleGuide => {
           this.styleGuide = styleGuide;
         });
@@ -356,7 +317,7 @@ describe('kss.parse()', function() {
       });
 
       it('should find a multi-word property', function(done) {
-        expect(this.styleGuide.sections('custom.multi-word').custom('custom multi-word property')).to.equal('This is a multi-word property.');
+        expect(this.styleGuide.sections('custom.multi-word').custom('custom-multi-word-property')).to.equal('This is a multi-word property.');
         done();
       });
 
@@ -388,14 +349,6 @@ describe('kss.parse()', function() {
         expect(section.modifiers().length).to.equal(1);
         done();
       });
-
-      it('should not interfere with content when at the top', function(done) {
-        let section = this.styleGuide.sections('markup.at-top');
-        expect(section.header()).to.equal('Don\'t be the header');
-        expect(section.markup()).to.equal('<h1 class="{{modifier_class}}">Header</h1>');
-        expect(section.modifiers()[0].name()).to.equal('.title');
-        done();
-      });
     });
 
     describe('.markdown:', function() {
@@ -415,12 +368,6 @@ describe('kss.parse()', function() {
       it('should be enabled by default', function() {
         return helperUtils.traverseFixtures({mask: 'property-header.less', markdown: false}).then(styleGuide => {
           expect(styleGuide.sections('header.three-paragraphs').description()).to.equal('ANOTHER PARAGRAPH\n\nAND ANOTHER');
-        });
-      });
-
-      it('should not remove the header from description when disabled', function() {
-        return helperUtils.traverseFixtures({mask: 'property-header.less', markdown: false, header: false}).then(styleGuide => {
-          expect(styleGuide.sections('header.three-paragraphs').description()).to.equal('THREE PARAGRAPHS, NO MODIFIERS\n\nANOTHER PARAGRAPH\n\nAND ANOTHER');
         });
       });
     });

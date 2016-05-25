@@ -1,24 +1,27 @@
-// Text Input
-//
-// Below are the text-oriented form elements used on the site.
-//
-// Style guide: demo.forms.text
+/**
+ * Text Input
+ *
+ * @description Below are the text-oriented form elements used on the site.
+ *
+ * @styleguide demo.forms.text
+ */
 
-
-// Single-Line Text Boxes
-//
-// Your standard, everyday text boxes.
-//
-// :hover    - Highlight the text box when hovering
-// :focus    - Similar to `:hover`, however it should demand more attention than
-//             when an input is simply hovered.
-// :disabled - When disabled, the input's appearance should reflect as such.
-//
-// Markup: <input type="text" class="{{modifier_class}}" value="Text input"/>
-//
-// Weight: -1
-//
-// Style guide: demo.forms.text.single-line
+/**
+ * Single-Line Text Boxes
+ *
+ * @description Your standard, everyday text boxes.
+ *
+ * @modifier :hover    - Highlight the text box when hovering
+ * @modifier :focus    - Similar to `:hover`, however it should demand more attention than
+ *             when an input is simply hovered.
+ * @modifier :disabled - When disabled, the input's appearance should reflect as such.
+ *
+ * @markup <input type="text" class="{{modifier_class}}" value="Text input"/>
+ *
+ * @weight -1
+ *
+ * @styleguide demo.forms.text.single-line
+ */
 input[type='text'] {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -55,24 +58,26 @@ input[type='text'] {
   }
 }
 
-// Label/Text box Pairs
-//
-// All labelled text boxes should be included in a wrapper `<div>` element for
-// both layout convenience and specific styling.
-//
-// Markup:
-// <div class="mod-input text {{modifier_class}}">
-//   <label>Text Label</label>
-//   {{> "demo.forms.text.single-line" modifier_class=""}}
-// </div>
-//
-// .disabled  - Use this class when the text input inside is expected to be
-//              disabled.
-// .invalid   - Use this class if the input has failed a validation check.
-// .valid     - Use this class if the input has passed a validation check
-//              (intended for live validation in particular).
-//
-// Style guide: demo.forms.text.label-pairs
+/**
+ * Label/Text box Pairs
+ *
+ * @description All labelled text boxes should be included in a wrapper `<div>` element for
+ * both layout convenience and specific styling.
+ *
+ * @markup
+ * <div class="mod-input text {{modifier_class}}">
+ *   <label>Text Label</label>
+ *   {{> "demo.forms.text.single-line" modifier_class=""}}
+ * </div>
+ *
+ * @modifier .disabled  - Use this class when the text input inside is expected to be
+ *              disabled.
+ * @modifier .invalid   - Use this class if the input has failed a validation check.
+ * @modifier .valid     - Use this class if the input has passed a validation check
+ *              (intended for live validation in particular).
+ *
+ * @styleguide demo.forms.text.label-pairs
+ */
 .mod-input {
   position:relative;
   display:block;

@@ -1,18 +1,20 @@
-// Buttons
-//
-// A majority of buttons in the site are built from the same base class.
-//
-// Markup: buttons.hbs
-//
-// .primary   - Use this class to indicate that the button is the primary
-//              feature of this form.
-// .remove    - Use this class to indicate that the button will remove a
-//              feature, or other negative connotations.
-// :hover     - Highlight the button when hovered.
-// :disabled  - Make the button change appearance to reflect it being disabled.
-// :active    - "Press" the button down when clicked.
-//
-// Style guide: demo.components.buttons
+/**
+ * Buttons
+ *
+ * @description A majority of buttons in the site are built from the same base class.
+ *
+ * @markup buttons.hbs
+ *
+ * @modifier .primary   - Use this class to indicate that the button is the primary
+ *              feature of this form.
+ * @modifier .remove    - Use this class to indicate that the button will remove a
+ *              feature, or other negative connotations.
+ * @modifier :hover     - Highlight the button when hovered.
+ * @modifier :disabled  - Make the button change appearance to reflect it being disabled.
+ * @modifier :active    - "Press" the button down when clicked.
+ *
+ * @styleguide demo.components.buttons
+ */
 .button {
   @color:#aaa;
 
@@ -58,13 +60,15 @@
   }
 }
 
-// .button-colorize(@color)
-//
-// Creates button styling with the specified color.
-//
-// @color - Button color.
-//
-// Style guide: demo.mixins.button-colorize
+/**
+ * .button-colorize(@color)
+ *
+ * @description Creates button styling with the specified color.
+ *
+ * @param @color - Button color.
+ *
+ * @styleguide demo.mixins.button-colorize
+ */
 .button-colorize(@color) {
   background-color:@color;
   border:1px solid darken(@color, 20%);
