@@ -53,18 +53,19 @@
 <li>Have the <code>kss</code> tool automatically build a style guide from your stylesheets.</li>
 </ol>
 <p>Here&#39;s an example KSS comment:</p>
-<pre class="prettyprint linenums lang-css"><code data-language="css">/*
-Button
-
-Your standard button suitable for clicking.
-
-:hover   - Highlights when hovering.
-.shiny   - Do not press this big, shiny, red button.
-
-Markup: button.html
-
-Style guide: components.button
-*/
+<pre class="prettyprint linenums lang-css"><code data-language="css">
+/**
+ * Button
+ *
+ * @description Your standard button suitable for clicking.
+ *
+ * @modifier :hover   - Highlights when hovering.
+ * @modifier .shiny   - Do not press this big, shiny, red button.
+ *
+ * @markup button.html
+ *
+ * @styleguide components.button
+ */
 .button {
   ...
 }
