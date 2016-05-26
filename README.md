@@ -2,7 +2,9 @@
 
 **Note:** This README is for the `master` branch of this project. To see the README for the latest stable release see [https://www.npmjs.com/package/kss](https://www.npmjs.com/package/kss).
 
-# kss-node
+# kssdoc-node
+
+A fork of `kss-node` that parses docblocks and block tags syntax, inspired by [JSDoc](http://usejsdoc.org/).
 
 This is a Node.js implementation of [Knyle Style Sheets](https://github.com/kneath/kss) (KSS), "a documentation syntax for CSS" that's intended to have syntax readable by humans *and* machines. Hence, the kss-node software can be used to create a "living style guide".
 
@@ -11,16 +13,18 @@ This is a Node.js implementation of [Knyle Style Sheets](https://github.com/knea
 
 Here's an example KSS comment:
 ```scss
-// Button
-//
-// Your standard button suitable for clicking.
-//
-// :hover   - Highlights when hovering.
-// .shiny   - Do not press this big, shiny, red button.
-//
-// Markup: button.html
-//
-// Style guide: components.button
+/**
+ * Button
+ *
+ * @description Your standard button suitable for clicking.
+ *
+ * @modifier :hover   - Highlights when hovering.
+ * @modifier .shiny   - Do not press this big, shiny, red button.
+ *
+ * @markup button.html
+ *
+ * @styleguide components.button
+ */
 .button {
   ...
 }
