@@ -6,18 +6,19 @@ This software is a Node.js implementation of [Knyle Style Sheets](https://github
 2. Have the `kss` tool automatically build a style guide from your stylesheets.
 
 Here's an example KSS comment:
-<pre class="prettyprint linenums lang-css"><code data-language="css">/*
-Button
-
-Your standard button suitable for clicking.
-
-:hover   - Highlights when hovering.
-.shiny   - Do not press this big, shiny, red button.
-
-Markup: button.html
-
-Style guide: components.button
-*/
+<pre class="prettyprint linenums lang-css"><code data-language="css">
+/**
+ * Button
+ *
+ * @description Your standard button suitable for clicking.
+ *
+ * @modifier :hover   - Highlights when hovering.
+ * @modifier .shiny   - Do not press this big, shiny, red button.
+ *
+ * @markup button.html
+ *
+ * @styleguide components.button
+ */
 .button {
   ...
 }
